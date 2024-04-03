@@ -74,5 +74,11 @@
   },
   "commitlint": {
     "extends": "@commitlint/config-conventional"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "pnpm lint",
+      "pnpm format"
+    ]
   }
 }
