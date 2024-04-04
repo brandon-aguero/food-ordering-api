@@ -1,10 +1,10 @@
 {
   "name": "food-ordering-api",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "REST API built with NestJS, Fastify, Docker, PostgreSQL and TypeORM",
+  "author": "BranLeeDev",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"{src,test}/**/*.ts\"",
