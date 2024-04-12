@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule as NestConfigModule } from '@nestjs/config';
+import { ConfigType, ConfigModule as NestConfigModule } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
 import configEnv from './envs/config.env';
 import { validate } from './envs/validation.env';
@@ -11,11 +11,23 @@ import { validate } from './envs/validation.env';
       load: [configEnv],
       validate,
     }),
-    LoggerModule.forRoot({
-      pinoHttp: {
-        transport: {
-          target: 'pino-pretty',
-        },
+    LoggerModule.forRootAsync({
+      inject: [configEnv.KEY],
+      useFactory: (configService: ConfigType<typeof configEnv>) => {
+        const isProd = configService.isProd;
+
+        return {
+          pinoHttp: {
+            transport: !isProd
+              ? {
+                  target: 'pino-pretty',
+                  options: {
+                    colorize: true,
+                  },
+                }
+              : undefined,
+          },
+        };
       },
     }),
   ],
