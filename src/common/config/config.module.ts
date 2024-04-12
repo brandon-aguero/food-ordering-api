@@ -26,6 +26,11 @@ import { validate } from './envs/validation.env';
                   },
                 }
               : undefined,
+            serializers: {
+              req: () => undefined,
+              res: () => undefined,
+            },
+            autoLogging: false,
           },
         };
       },
