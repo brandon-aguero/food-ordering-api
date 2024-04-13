@@ -23,6 +23,9 @@ dependencies:
   class-validator:
     specifier: ^0.14.1
     version: 0.14.1
+  fastify:
+    specifier: ^4.26.2
+    version: 4.26.2
   nestjs-pino:
     specifier: ^4.0.0
     version: 4.0.0(@nestjs/common@10.3.7)(pino-http@9.0.0)
