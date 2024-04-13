@@ -6,6 +6,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { Logger } from 'nestjs-pino';
 import { AppModule } from './app.module';
+import { SwaggerModule } from './common/swagger/swagger.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -17,6 +18,7 @@ async function bootstrap() {
   );
   app.useLogger(app.get(Logger));
   const configService = app.get(ConfigService);
+  SwaggerModule.setup(app);
   await app.listen(Number(configService.get('PORT')), '0.0.0.0');
 }
 bootstrap();
