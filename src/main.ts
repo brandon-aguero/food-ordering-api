@@ -7,6 +7,7 @@ import { ConfigService } from '@nestjs/config';
 import { Logger } from 'nestjs-pino';
 import { AppModule } from './app.module';
 import { SwaggerModule } from './common/swagger/swagger.module';
+import { corsOptions } from './common/config/libs/cors.lib';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -16,6 +17,7 @@ async function bootstrap() {
       bufferLogs: true,
     },
   );
+  app.enableCors(corsOptions);
   app.useLogger(app.get(Logger));
   const configService = app.get(ConfigService);
   SwaggerModule.setup(app);
