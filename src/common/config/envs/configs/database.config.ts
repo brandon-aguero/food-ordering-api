@@ -2,6 +2,7 @@ import { registerAs } from '@nestjs/config';
 
 export default registerAs('database', () => {
   return {
+    isProd: process.env.NODE_ENV === 'production',
     postgres: {
       user: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
