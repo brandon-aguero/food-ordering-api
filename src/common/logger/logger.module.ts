@@ -6,13 +6,13 @@ import {
   CORRELATION_ID_HEADER,
   CorrelationIdMiddleware,
 } from './middlewares/correlation-id.middleware';
-import configEnv from '../config/envs/config.env';
+import config from '../config/envs/configs/config.config';
 
 @Module({
   imports: [
     NestLoggerModule.forRootAsync({
-      inject: [configEnv.KEY],
-      useFactory: (configService: ConfigType<typeof configEnv>) => {
+      inject: [config.KEY],
+      useFactory: (configService: ConfigType<typeof config>) => {
         const isProd = configService.isProd;
         return {
           pinoHttp: {
