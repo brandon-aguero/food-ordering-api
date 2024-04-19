@@ -1,14 +1,18 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule as NestConfigModule } from '@nestjs/config';
-import configEnv from './envs/config.env';
-import { validate } from './envs/validation.env';
+import config from './envs/configs/config.config';
+import database from './envs/configs/database.config';
+import { validate } from './envs/validations/validate.validation';
 
 @Module({
   imports: [
     NestConfigModule.forRoot({
+      envFilePath: ['.env', '.env.development.local'],
       isGlobal: true,
-      load: [configEnv],
+      load: [config, database],
       validate,
+      cache: true,
+      expandVariables: true,
     }),
   ],
 })
