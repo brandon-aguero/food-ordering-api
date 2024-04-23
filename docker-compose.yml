@@ -21,3 +21,15 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
     ports:
       - ${PGADMIN_HOST_PORT}:${PGADMIN_PORT}
+
+  food-ordering-api:
+    container_name: food-ordering-api
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - PORT=${PORT}
+    ports:
+      - ${PORT}:${PORT}
+    env_file: .env
