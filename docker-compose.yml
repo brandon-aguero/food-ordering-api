@@ -27,6 +27,7 @@ services:
     restart: always
     build:
       context: .
+      target: production
       dockerfile: Dockerfile
       args:
         - PORT=${PORT}
